@@ -1,0 +1,5 @@
+[ru]
+DR_CORE_PREFIX = "^4[DeathRun]^1 "
+
+DR_CURR_TER = Новый террорист ^3%s
+DR_TER_DISCONNECTED = ^3%s^1 вышел, новый террорист ^3%s^1
