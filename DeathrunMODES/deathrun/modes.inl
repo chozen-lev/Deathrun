@@ -33,7 +33,7 @@ public Handle_MenuModes( id, menu, item )
 		
 		if( item == MENU_EXIT || item == MENU_TIMEOUT )
 		{
-			ArrayGetArray( ArrayAvailModes, random( ArraySize( ArrayAvailModes ) - 1 ), Data )
+			ArrayGetArray( ArrayModes, random( ArraySize( ArrayAvailModes ) - 1 ), Data )
 		}
 		else
 		{

@@ -19,6 +19,8 @@ public CBasePlayer_RoundRespawn_Post( id )
 	{
 		static i, access, info[ 4 ], name[ 32 ], callback, ret, hc_state, fwdData[ FORWARD_DATA ], AvailModesNum
 		
+		ArrayClear( ArrayAvailModes )
+		
 		for( i = 0; i < menu_items( g_iModeMenu ); i++ )
 		{
 			menu_item_getinfo( g_iModeMenu, i, access, info, charsmax( info ), name, charsmax( name ), callback )
@@ -27,7 +29,7 @@ public CBasePlayer_RoundRespawn_Post( id )
 			{
 				ExecuteForward( callback, ret, id, g_iModeMenu, i )
 				
-				if( ret == ITEM_ENABLED )
+				if( ret != ITEM_DISABLED )
 					ArrayPushCell( ArrayAvailModes, str_to_num( info ) )
 			}
 			else ArrayPushCell( ArrayAvailModes, str_to_num( info ) )
