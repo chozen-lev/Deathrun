@@ -55,7 +55,7 @@ public bool:native_enable_forward( CPlugin, CParams )
 {
 	static Data[ FORWARDS ], ForwardData[ FORWARD_DATA ]
 	
-	if( ArrayGetArray( ArrayForwards, get_param( 1 ), Data ) )
+	if( !ArrayGetArray( ArrayForwards, get_param( 1 ), Data ) )
 		return false
 	
 	ArrayGetArray( Data[ m_Array ], Data[ m_arrIndex ], ForwardData )
@@ -71,7 +71,7 @@ public bool:native_disable_forward( CPlugin, CParams )
 {
 	static Data[ FORWARDS ], ForwardData[ FORWARD_DATA ]
 	
-	if( ArrayGetArray( ArrayForwards, get_param( 1 ), Data ) )
+	if( !ArrayGetArray( ArrayForwards, get_param( 1 ), Data ) )
 		return false
 	
 	ArrayGetArray( Data[ m_Array ], Data[ m_arrIndex ], ForwardData )
