@@ -18,7 +18,8 @@ enum RandomizeEvents
 enum _:FORWARDS
 {
 	DRMCoreFunc:m_Function,
-	m_arrIndex
+	m_arrIndex,
+	Array:m_Array
 }
 
 enum _:FORWARD_DATA
@@ -39,7 +40,7 @@ enum _:PLAYER_DATA
 	m_szSteamID[ 32 ]
 }
 
-new bool:g_bFirstRound = true
+new bool:g_bFirstRound = true, bool:g_RoundStarted = true
 
 new g_iCurrTer, g_PlayerData[ 33 ][ PLAYER_DATA ]
 

@@ -21,6 +21,8 @@ public plugin_init( )
 	RegisterHookChain( RG_ShowVGUIMenu, "ShowVGUIMenu" )
 	RegisterHookChain( RG_CSGameRules_FPlayerCanRespawn, "CSGameRules_FPlayerCanRespawn" )
 	RegisterHookChain( RG_CBasePlayer_Spawn, "CBasePlayer_Spawn_Post", true )
+	RegisterHookChain( RG_RoundEnd, "RoundEnd" )
+	RegisterHookChain( RG_RoundEnd, "RoundEnd_Post", true )
 	
 	// clcmds
 	register_clcmd( "jointeam", "Cmd_Block_Main" )

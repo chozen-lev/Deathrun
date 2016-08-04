@@ -42,9 +42,11 @@ public native_register_forward( CPlugin, CParams )
 			ForwardData[ m_fwdIndex ] = CreateOneForward( CPlugin, szHandler, FP_CELL, FP_CELL )
 			
 			Data[ m_Function ] = DRM_Randomize
-			Data[ m_arrIndex ] = ArrayPushArray( ArrayForwardRandomize, ForwardData )
+			Data[ m_Array ] = ArrayForwardRandomize
 		}
 	}
+	
+	Data[ m_arrIndex ] = ArrayPushArray( Data[ m_Array ], ForwardData )
 	
 	return ArrayPushArray( ArrayForwards, Data )
 }
@@ -56,11 +58,11 @@ public bool:native_enable_forward( CPlugin, CParams )
 	if( ArrayGetArray( ArrayForwards, get_param( 1 ), Data ) )
 		return false
 	
-	ArrayGetArray( ArrayForwardRandomize, Data[ m_arrIndex ], ForwardData )
+	ArrayGetArray( Data[ m_Array ], Data[ m_arrIndex ], ForwardData )
 	
 	ForwardData[ m_State ] = true
 	
-	ArraySetArray( ArrayForwardRandomize, Data[ m_arrIndex ], ForwardData )
+	ArraySetArray( Data[ m_Array ], Data[ m_arrIndex ], ForwardData )
 	
 	return true
 }
@@ -72,11 +74,11 @@ public bool:native_disable_forward( CPlugin, CParams )
 	if( ArrayGetArray( ArrayForwards, get_param( 1 ), Data ) )
 		return false
 	
-	ArrayGetArray( ArrayForwardRandomize, Data[ m_arrIndex ], ForwardData )
+	ArrayGetArray( Data[ m_Array ], Data[ m_arrIndex ], ForwardData )
 	
 	ForwardData[ m_State ] = false
 	
-	ArraySetArray( ArrayForwardRandomize, Data[ m_arrIndex ], ForwardData )
+	ArraySetArray( Data[ m_Array ], Data[ m_arrIndex ], ForwardData )
 	
 	return true
 }

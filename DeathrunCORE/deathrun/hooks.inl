@@ -158,6 +158,8 @@ public CSGameRules_RestartRound( )
 
 public CSGameRules_RestartRound_Post( )
 {
+	g_RoundStarted = true
+	
 	if( g_bFirstRound )
 	{
 		g_bFirstRound = false
@@ -217,4 +219,20 @@ public CBasePlayer_Spawn_Post( id )
 {
 	if( is_user_connected( id ) && !get_pcvar_bool( CVAR_ReconnectRespawn ) && !TrieKeyExists( TrieReconnected, g_PlayerData[ id ][ m_szSteamID ] ) )
 		TrieSetCell( TrieReconnected, g_PlayerData[ id ][ m_szSteamID ], true )
+}
+
+public RoundEnd( WinStatus:status, ScenarioEventEndRound:event, Float:tmDelay )
+{
+	if( !g_RoundStarted )
+	{
+		SetHookChainReturn( ATYPE_INTEGER, false )
+		return HC_BREAK
+	}
+	
+	return HC_CONTINUE
+}
+
+public RoundEnd_Post( WinStatus:status, ScenarioEventEndRound:event, Float:tmDelay )
+{
+	g_RoundStarted = false
 }
