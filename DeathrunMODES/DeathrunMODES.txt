@@ -1,0 +1,14 @@
+[ru]
+DR_MODE_PREFIX = "^4[DeathRun]^1 "
+
+DR_MODE_TITLE = Меню режимов
+
+PLAYER_NEXT = Далее
+PLAYER_BACK = Назад
+DR_MODE_RANDOMLY = \yВыбрать случайно
+
+DR_MODE_RANDOM = Террорист не захотел выбирать режим. Играем: ^4%L
+DR_MODE_TERCC = Террорист выбрал ^4%L
+DR_MODE_AUTO = Террористу уже нечего выбрать. Играем: ^4%L
+
+DR_MODE_NONE = Никакой
