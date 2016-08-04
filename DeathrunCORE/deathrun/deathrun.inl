@@ -91,10 +91,7 @@ public plugin_end( )
 	{
 		ArrayGetArray( ArrayForwards, i, Data )
 		
-		switch( Data[ m_Function ] )
-		{
-			case DRM_Randomize:ArrayGetArray( ArrayForwardRandomize, Data[ m_arrIndex ], ForwardData )
-		}
+		ArrayGetArray( Data[ m_Array ], Data[ m_arrIndex ], ForwardData )
 		
 		DestroyForward( ForwardData[ m_fwdIndex ] )
 	}
