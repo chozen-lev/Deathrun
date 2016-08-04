@@ -178,7 +178,7 @@ public CSGameRules_RestartRound( )
 		{
 			ArrayGetArray( ArrayForwardChangeMode, i, fwdData )
 			
-			if( fwdData[ m_Post ] == 0 && Data[ m_State ] )
+			if( fwdData[ m_Post ] == 0 && fwdData[ m_State ] )
 			{
 				ExecuteForward( fwdData[ m_fwdIndex ], ret, g_NoneMode[ m_Index ], m_Reset )
 				
@@ -217,7 +217,7 @@ public CSGameRules_RestartRound( )
 		{
 			ArrayGetArray( ArrayForwardChangeMode, i, fwdData )
 			
-			if( fwdData[ m_Post ] && Data[ m_State ] )
+			if( fwdData[ m_Post ] && fwdData[ m_State ] )
 			{
 				ExecuteForward( fwdData[ m_fwdIndex ], ret, g_CurrMode[ m_Index ], event )
 				
