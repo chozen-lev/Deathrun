@@ -7,7 +7,7 @@ public DRMCore_Randomize_Post( id, RandomizeEvents:event )
 	{
 		remove_task( g_iCurrTer + TASK_AUTOCHOOSE )
 		
-		CBasePlayer_RoundRespawn_Post( id )
+		CBasePlayer_RoundRespawn_Post( g_iCurrTer = id )
 	}
 	
 	g_iCurrTer = id
@@ -18,7 +18,6 @@ public CBasePlayer_RoundRespawn_Post( id )
 	if( id == g_iCurrTer && g_CurrMode[ m_Index ] == ModeIndexes:m_None )
 	{
 		static i, access, info[ 4 ], name[ 32 ], callback, ret, hc_state, fwdData[ FORWARD_DATA ], AvailModesNum
-		
 		ArrayClear( ArrayAvailModes )
 		
 		for( i = 0; i < menu_items( g_iModeMenu ); i++ )
