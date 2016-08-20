@@ -20,8 +20,6 @@ public ModeIndexes:native_DRM_RegisterMode( CPlugin, CParams )
 	ArrayPushArray( ArrayModes, Data )
 	ArrayPushCell( ArrayModeIndexes, Data[ m_Index ] )
 	
-	g_iModesNum++
-	
 	return Data[ m_Index ]
 }
 

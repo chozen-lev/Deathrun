@@ -57,7 +57,7 @@ enum _:TASKS( += 100 )
 	TASK_AUTOCHOOSE
 }
 
-new g_iModesMax = _:iModes, g_iModesNum
+new g_iModesMax = _:iModes
 
 new g_CurrMode[ ModeData ], g_NoneMode[ ModeData ] = { ModeIndexes:m_None, "DR_MODE_NONE", true }
 

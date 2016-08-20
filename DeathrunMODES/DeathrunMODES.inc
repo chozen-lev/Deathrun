@@ -6,6 +6,18 @@
 #endif
 #define _DeathrunMODES_included
 
+enum ModeIndexes:iModes
+{
+	m_None = 0,
+	m_Buttons,
+	m_Free,
+	m_Invis,
+	m_Rambo,
+	m_Snowballs,
+	m_WarmUp,
+	m_Duel
+}
+
 enum ModeEvents
 {
 	m_None,
@@ -38,4 +50,4 @@ native SetDRMModeArg( number, AType:type, any:... );
 
 native ModeIndexes:DRM_RegisterMode( {ModeIndexes,_}:mode = ModeIndexes:m_None, langName[ ], bool:hide );
 
-native dr_set_ter( ModeIndexes:mode );
+native dr_set_mode( ModeIndexes:mode );
