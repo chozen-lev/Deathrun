@@ -1,7 +1,7 @@
-#include < amxmodx >
-#include < reapi >
+#include <amxmodx>
+#include <reapi>
 
-#include < DeathrunCORE >
+#include <DeathrunCORE>
 
 #include "deathrun/constants.inl"
 #include "deathrun/cvar.inl"
