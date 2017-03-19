@@ -26,6 +26,7 @@ public plugin_init( )
 	
 	// clcmds
 	register_clcmd( "jointeam", "Cmd_Block_Main" )
+	register_clcmd( "joinclass", "Cmd_Block_Main" )
 	register_clcmd( "showbriefing", "Cmd_Block_Main" )
 	register_clcmd( "radio1", "Cmd_Block_Main" )
 	register_clcmd( "radio2", "Cmd_Block_Main" )

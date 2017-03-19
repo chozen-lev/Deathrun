@@ -63,6 +63,11 @@ ReplaceTerrorist( id )
 			static Float:vOrigin[ 3 ], Float:vVelocity[ 3 ], Float:vAngles[ 3 ]
 			
 			get_entvar( g_iCurrTer, var_origin, vOrigin )
+			
+			// In case he was sitting in a low space
+			if( get_entvar( g_iCurrTer, var_bInDuck ) )
+				set_entvar( iNextTer, var_bInDuck, true )
+			
 			set_entvar( iNextTer, var_origin, vOrigin )
 			
 			// In case he was flying over the precipice or something else
@@ -72,10 +77,6 @@ ReplaceTerrorist( id )
 			get_entvar( g_iCurrTer, var_angles, vAngles )
 			set_entvar( iNextTer, var_angles, vAngles )
 			set_entvar( iNextTer, var_fixangle, 1 )
-			
-			// In case he was sitting in a low space
-			if( get_entvar( g_iCurrTer, var_bInDuck ) )
-				set_entvar( iNextTer, var_bInDuck, true )
 		}
 		
 		g_iCurrTer = iNextTer
