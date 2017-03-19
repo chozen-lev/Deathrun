@@ -43,6 +43,8 @@ public Handle_MenuModes( id, menu, item )
 			ArrayGetArray( ArrayModes, ArrayFindValue( ArrayModeIndexes, str_to_num( info ) ), Data )
 		}
 		
+		hc_state = HC_CONTINUE
+		
 		for( i = 0; i < ArraySize( ArrayForwardChangeMode ); i++ )
 		{
 			ArrayGetArray( ArrayForwardChangeMode, i, fwdData )
