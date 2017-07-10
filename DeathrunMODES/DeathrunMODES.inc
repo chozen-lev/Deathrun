@@ -41,13 +41,13 @@ enum DRMModeFunc
     DRM_ChangeMode
 };
 
-native HookChain:DRMModeForward({DRMModeFunc,_}:function_id, callback[], post = 0);
+native HookChain:DRMModeForward(DRMModeFunc:function_id, callback[], post = 0);
 
 native bool:DRMModeEnableForward(HookChain:hook);
 native bool:DRMModeDisableForward(HookChain:hook);
 
 native SetDRMModeArg(number, AType:type, any:...);
 
-native ModeIndexes:DRM_RegisterMode({ModeIndexes,_}:mode = ModeIndexes:m_None, langName[], bool:hide);
+native ModeIndexes:DRM_RegisterMode(ModeIndexes:mode = ModeIndexes:m_None, langName[], bool:hide);
 
 native dr_set_mode(ModeIndexes:mode);

@@ -1,5 +1,6 @@
 #include <amxmodx>
 #include <reapi>
+#include <engine>
 
 #include <DeathrunCORE>
 
@@ -18,7 +19,9 @@ public plugin_init()
     DRMCoreForward(DRM_Randomize, "DRMCore_Randomize_Post", true)
     RegisterHookChain(RG_CBasePlayer_RoundRespawn, "CBasePlayer_RoundRespawn_Post", true)
     RegisterHookChain(RG_CSGameRules_RestartRound, "CSGameRules_RestartRound")
+    RegisterHookChain(RG_CSGameRules_RestartRound, "CSGameRules_RestartRound_Post", true)
     RegisterHookChain(RG_RoundEnd, "RoundEnd_Post", true)
+//    RegisterHookChain(RG_CSGameRules_OnRoundFreezeEnd, "CSGameRules_OnRoundFreezeEnd_Post", true)
     
     // dictionary
     register_dictionary("DeathrunMODES.txt")

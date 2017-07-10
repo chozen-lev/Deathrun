@@ -17,12 +17,12 @@ public plugin_init()
     RegisterHookChain(RG_CSGameRules_RestartRound, "CSGameRules_RestartRound_Post", true)
     RegisterHookChain(RG_CBasePlayer_SetClientUserInfoName, "CBasePlayer_SetClientUserInfoName_Post", true)
     RegisterHookChain(RG_CSGameRules_FlPlayerFallDamage, "CSGameRules_FlPlayerFallDamage")
-    RegisterHookChain(RH_SV_DropClient, "SV_DropClient")
     RegisterHookChain(RG_ShowVGUIMenu, "ShowVGUIMenu")
     RegisterHookChain(RG_CSGameRules_FPlayerCanRespawn, "CSGameRules_FPlayerCanRespawn")
     RegisterHookChain(RG_CBasePlayer_Spawn, "CBasePlayer_Spawn_Post", true)
     RegisterHookChain(RG_RoundEnd, "RoundEnd")
     RegisterHookChain(RG_RoundEnd, "RoundEnd_Post", true)
+    RegisterHookChain(RG_CBasePlayer_AddAccount, "CBasePlayer_AddAccount")
     
     // clcmds
     register_clcmd("jointeam", "Cmd_Block_Main")

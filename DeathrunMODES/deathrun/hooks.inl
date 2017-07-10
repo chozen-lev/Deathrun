@@ -2,7 +2,7 @@
 ///////////////////////////////////////////
 
 public DRMCore_Randomize_Post(id, RandomizeEvents:event)
-{
+{ 
     if (task_exists(g_iCurrTer + TASK_AUTOCHOOSE) && event == m_Dropped)
     {
         remove_task(g_iCurrTer + TASK_AUTOCHOOSE)
@@ -41,7 +41,12 @@ public CBasePlayer_RoundRespawn_Post(id)
         {
             static iMenu, time
             
-            time = 10
+            time = get_cvar_num("mp_freezetime")
+            
+            if (time < 10)
+                time = 10
+            else if (time > 60)
+                time = 60
             
             for (i = 0; i < ArraySize(ArrayForwardShowMenu); i++)
             {
@@ -169,7 +174,7 @@ public CBasePlayer_RoundRespawn_Post(id)
 
 public CSGameRules_RestartRound()
 {
-    if (g_CurrMode[m_Index] != ModeIndexes:m_None && menu_items(g_iModeMenu) > 1)
+    if (g_CurrMode[m_Index] != ModeIndexes:m_None)
     {
         static Data[ModeData], i, ModeEvents:event, ret, hc_state, fwdData[FORWARD_DATA]
         
@@ -229,6 +234,16 @@ public CSGameRules_RestartRound()
     }
 }
 
+public CSGameRules_RestartRound_Post()
+{
+    if (get_cvar_num("mp_freezetime") != 0 && g_iCurrTer == 0)
+    {
+        set_member_game(m_iRoundTimeSecs, 0)
+        set_member_game(m_fRoundStartTime, halflife_time())
+        set_member_game(m_fRoundStartTimeReal, halflife_time())
+    }
+}
+
 public RoundEnd_Post(WinStatus:status, ScenarioEventEndRound:event, Float:tmDelay)
 {
     if (task_exists(g_iCurrTer + TASK_AUTOCHOOSE))
@@ -237,3 +252,8 @@ public RoundEnd_Post(WinStatus:status, ScenarioEventEndRound:event, Float:tmDela
         show_menu(g_iCurrTer, 0, "^n")
     }
 }
+
+/*public CSGameRules_OnRoundFreezeEnd_Post()
+{
+    client_print(0, print_chat, "unfreeze/round start")
+}*/

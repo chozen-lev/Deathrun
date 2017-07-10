@@ -3,6 +3,9 @@
 
 public plugin_cfg()
 {
+    // freezetime on round start
+    set_cvar_num("mp_freezetime", 10)
+    
     DR_Init()
 }
 

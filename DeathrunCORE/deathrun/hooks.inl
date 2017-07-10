@@ -8,13 +8,13 @@ public client_authorized(id)
     get_user_name(id, g_PlayerData[id][m_szName], charsmax(g_PlayerData[][m_szName]))
 }
 
-public SV_DropClient(id, bool:crash, const fmt[])
+public client_disconnected(id, bool:drop, message[], maxlen)
 {
     // if terrorist left the game
     if (id == g_iCurrTer)
     {
         static iPlayers[32], iNum
-        get_players(iPlayers, iNum, "e", "CT")
+        get_players(iPlayers, iNum, "eh", "CT")
         
         if (iNum > 1)
         {
@@ -84,12 +84,12 @@ public CSGameRules_RestartRound()
         if (!get_pcvar_bool(CVAR_ReconnectRespawn)) TrieClear(TrieReconnected)
         
         static iPlayers[32], iNum
-        get_players(iPlayers, iNum, "e", "TERRORIST")
+        get_players(iPlayers, iNum, "eh", "TERRORIST")
         
         // Transfer all terrorists to the TEAM_CT
         for (new i = 0; i < iNum; i++) rg_set_user_team(iPlayers[i], TEAM_CT)
         
-        get_players(iPlayers, iNum, "e", "CT")
+        get_players(iPlayers, iNum, "eh", "CT")
         
         // Selecting next terrorist
         if (iNum > 1)
@@ -209,7 +209,7 @@ public CSGameRules_FPlayerCanRespawn(id)
     if (!get_pcvar_bool(CVAR_ReconnectRespawn) && TrieKeyExists(TrieReconnected, g_PlayerData[id][m_szSteamID]))
     {
         SetHookChainReturn(ATYPE_INTEGER, false)
-        return HC_OVERRIDE
+        return HC_SUPERCEDE
     }
     
     return HC_CONTINUE
@@ -235,4 +235,13 @@ public RoundEnd(WinStatus:status, ScenarioEventEndRound:event, Float:tmDelay)
 public RoundEnd_Post(WinStatus:status, ScenarioEventEndRound:event, Float:tmDelay)
 {
     g_RoundStarted = false
+}
+
+public CBasePlayer_AddAccount(const id, amount, RewardType:type, bool:bTrackChange)
+{
+	if (get_pcvar_bool(CVAR_BlockRewards) && type != RT_NONE) {
+		return HC_BREAK
+	}
+	
+	return HC_CONTINUE
 }

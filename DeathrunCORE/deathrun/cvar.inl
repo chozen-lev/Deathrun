@@ -4,6 +4,7 @@
 new CVAR_ReconnectRespawn
 new CVAR_NoFallDmg
 new CVAR_BuyMenu
+new CVAR_BlockRewards
 
 public plugin_cfg()
 {
@@ -11,6 +12,7 @@ public plugin_cfg()
     CVAR_ReconnectRespawn = create_cvar("mp_reconnectrespawn", "0")
     CVAR_NoFallDmg = create_cvar("mp_terrnfd", "1")
     CVAR_BuyMenu = create_cvar("mp_buymenu", "0")
+    CVAR_BlockRewards = create_cvar("dr_rewards", "1")
     
     // Disable team balancing
     set_cvar_num("mp_limitteams", 0)
@@ -25,9 +27,6 @@ public plugin_cfg()
     
     // Fix jamming on a mobile platform
     set_cvar_num("sv_force_ent_intersection", 1)
-    
-    // Disable freezetime on round start
-    set_cvar_num("mp_freezetime", 0)
     
     DR_Init()
     
