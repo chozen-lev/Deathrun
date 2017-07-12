@@ -27,14 +27,17 @@ public Handle_MenuModes(id, menu, item)
 {
     if (task_exists(id + TASK_AUTOCHOOSE))
     {
-        set_member_game(m_iRoundTimeSecs, 0)
-        set_member_game(m_fRoundStartTime, halflife_time())
-        set_member_game(m_fRoundStartTimeReal, halflife_time())
+        if (get_cvar_num("mp_freezetime"))
+        {
+            set_member_game(m_iRoundTimeSecs, 0)
+            set_member_game(m_fRoundStartTime, halflife_time())
+            set_member_game(m_fRoundStartTimeReal, halflife_time())
+        }
         
         static i, ret, hc_state, fwdData[FORWARD_DATA], Data[ModeData], ModeIndexes:iNextMode, ModeEvents:event
         
         remove_task(id + TASK_AUTOCHOOSE)
-        
+		
         if (item == MENU_EXIT || item == MENU_TIMEOUT)
         {
             ArrayGetArray(ArrayModes, random(ArraySize(ArrayAvailModes) - 1), Data)

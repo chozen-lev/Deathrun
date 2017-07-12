@@ -3,15 +3,15 @@
 
 public plugin_cfg()
 {
-    // freezetime on round start
+	// freezetime on round start
     set_cvar_num("mp_freezetime", 10)
-    
+	
     DR_Init()
 }
 
 public OnConfigsExecuted()
 {
-    // Mode Menu creating
+    // mode menu creating
     new Data[ModeData], szText[48], info[4]
     
     formatex(szText, charsmax(szText), "%L\R", LANG_PLAYER, "DR_MODE_TITLE")

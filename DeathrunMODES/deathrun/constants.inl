@@ -1,7 +1,7 @@
 // CONSTANS
 ///////////////////////////////////////////
 
-#define VERSION "1.0.0-dev+"
+#define VERSION "1.0.2-dev+"
 
 new const g_langPrefix[] = "DR_MODE_PREFIX"
 
@@ -70,3 +70,6 @@ new Array:ArrayForwardShowMenu, Array:ArrayForwardChangeMode, Array:ArrayForward
 new g_iModeMenu
 
 new g_iArg[3], bool:g_bArgState[3]
+
+new HookChain:g_iFwdRoundFreezeEnd
+new HamHook:g_iFwdTriggerPushTouch

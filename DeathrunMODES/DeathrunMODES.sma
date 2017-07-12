@@ -1,6 +1,7 @@
 #include <amxmodx>
 #include <reapi>
 #include <engine>
+#include <hamsandwich>
 
 #include <DeathrunCORE>
 
@@ -21,7 +22,8 @@ public plugin_init()
     RegisterHookChain(RG_CSGameRules_RestartRound, "CSGameRules_RestartRound")
     RegisterHookChain(RG_CSGameRules_RestartRound, "CSGameRules_RestartRound_Post", true)
     RegisterHookChain(RG_RoundEnd, "RoundEnd_Post", true)
-//    RegisterHookChain(RG_CSGameRules_OnRoundFreezeEnd, "CSGameRules_OnRoundFreezeEnd_Post", true)
+    g_iFwdRoundFreezeEnd = RegisterHookChain(RG_CSGameRules_OnRoundFreezeEnd, "CSGameRules_OnRoundFreezeEnd_Post", true)
+    g_iFwdTriggerPushTouch = RegisterHam( Ham_Touch, "trigger_push", "FwdTriggerPushTouch" )
     
     // dictionary
     register_dictionary("DeathrunMODES.txt")
