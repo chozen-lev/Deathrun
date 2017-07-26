@@ -7,7 +7,9 @@ public DRMCore_Randomize_Post(id, RandomizeEvents:event)
     {
         remove_task(g_iCurrTer + TASK_AUTOCHOOSE)
         
-        CBasePlayer_RoundRespawn_Post(g_iCurrTer = id)
+        if (id != 0) {
+            CBasePlayer_RoundRespawn_Post(g_iCurrTer = id)
+        }
     }
     
     g_iCurrTer = id
