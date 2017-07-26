@@ -109,7 +109,7 @@ public Show_MenuShop(id)
     
     if (g_PlayerData[id][m_Discount] <= 0)
     {
-        formatex(szText, charsmax(szText), "%L\R\d", LANG_PLAYER, "SHOP_TITLE", LANG_PLAYER)
+        formatex(szText, charsmax(szText), "%L\R\d", LANG_PLAYER, "SHOP_TITLE")
     }
     else
     {
@@ -167,7 +167,7 @@ public Show_MenuShop(id)
             formatex(szText, charsmax(szText), "%L \y- $%d", LANG_PLAYER, Data[m_langName], Data[m_Cost])
             num_to_str(_:Data[m_Index], info, charsmax(info))
             
-            menu_additem(iMenu, szText, info, 0, g_iCallback)
+            menu_additem(iMenu, szText, info, ADMIN_ALL, g_iCallback)
         }
         
         for (j = 0; j < ArraySize(ArrayForwardMenuAddItem); j++)
@@ -254,7 +254,7 @@ public CallBack_MenuShop(id, menu, item)
     if (g_PlayerData[id][m_Account] < Data[m_Cost])
         return ITEM_DISABLED
     
-    return ITEM_ENABLED
+    return ITEM_IGNORE
 }
 
 public Handle_MenuShop(id, menu, item)
@@ -262,63 +262,62 @@ public Handle_MenuShop(id, menu, item)
     if (item == MENU_EXIT)
     {
         menu_destroy(menu)
+        return PLUGIN_CONTINUE
     }
-    else
-    {
-        static access, info[8], name[128], callback, ret
-        menu_item_getinfo(menu, item, access, info, charsmax(info), name, charsmax(name), callback)
-        
-        ExecuteForward(callback, ret, id, menu, item)
-        
-        if (ret == ITEM_DISABLED)
-        {
-            menu_destroy(menu)
-            
-            Show_MenuShop(id)
-        }
-        else
-        {
-            static i, Data[ItemData], hc_state, fwdData[FORWARD_DATA]
-            
-            ArrayGetArray(ArrayItems, ArrayFindValue(ArrayItemIndexes, str_to_num(info)), Data)
-            
-            hc_state = HC_CONTINUE
-            
-            for (i = 0; i < ArraySize(ArrayForwardBuyItem); i++)
-            {
-                ArrayGetArray(ArrayForwardBuyItem, i, fwdData)
-                
-                if (fwdData[m_Post] == 0 && fwdData[m_State])
-                {
-                    ExecuteForward(fwdData[m_fwdIndex], ret, id, menu, item)
-                    
-                    if (ret == HC_BREAK)
-                        break
-                    
-                    if (ret > hc_state)
-                        hc_state = ret
-                }
-            }
-            
-            if (hc_state != HC_SUPERCEDE)
-            {
-                rg_add_account(id, -Data[m_Cost])
-                
-                menu_destroy(menu)
-            }
 
-            for (i = 0; i < ArraySize(ArrayForwardBuyItem); i++)
-            {
-                ArrayGetArray(ArrayForwardBuyItem, i, fwdData)
-                
-                if (fwdData[m_Post] && fwdData[m_State])
-                {
-                    ExecuteForward(fwdData[m_fwdIndex], ret, id, menu, item)
-                    
-                    if (ret == HC_BREAK)
-                        break
-                }
-            }
+    static access, info[8], name[128], callback, ret
+    menu_item_getinfo(menu, item, access, info, charsmax(info), name, charsmax(name), callback)
+    
+    ExecuteForward(callback, ret, id, menu, item)
+    
+    if (ret == ITEM_DISABLED)
+    {
+        menu_destroy(menu)
+        Show_MenuShop(id)
+        return PLUGIN_CONTINUE
+    }
+
+    static i, Data[ItemData], hc_state, fwdData[FORWARD_DATA]
+    
+    ArrayGetArray(ArrayItems, ArrayFindValue(ArrayItemIndexes, str_to_num(info)), Data)
+    
+    hc_state = HC_CONTINUE
+    
+    for (i = 0; i < ArraySize(ArrayForwardBuyItem); i++)
+    {
+        ArrayGetArray(ArrayForwardBuyItem, i, fwdData)
+        
+        if (fwdData[m_Post] == 0 && fwdData[m_State])
+        {
+            ExecuteForward(fwdData[m_fwdIndex], ret, id, menu, item)
+            
+            if (ret == HC_BREAK)
+                break
+            
+            if (ret > hc_state)
+                hc_state = ret
         }
     }
+    
+    if (hc_state != HC_SUPERCEDE)
+    {
+        rg_add_account(id, -Data[m_Cost])
+        
+        menu_destroy(menu)
+    }
+
+    for (i = 0; i < ArraySize(ArrayForwardBuyItem); i++)
+    {
+        ArrayGetArray(ArrayForwardBuyItem, i, fwdData)
+        
+        if (fwdData[m_Post] && fwdData[m_State])
+        {
+            ExecuteForward(fwdData[m_fwdIndex], ret, id, menu, item)
+            
+            if (ret == HC_BREAK)
+                break
+        }
+    }
+    
+    return PLUGIN_CONTINUE
 }

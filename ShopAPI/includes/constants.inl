@@ -57,7 +57,7 @@ new g_iItemsMax = _:iItems
 
 new Array:ArrayItems, Array:ArrayItemIndexes
 
-new g_PlayerData[33][PLAYER_DATA]
+new g_PlayerData[32][PLAYER_DATA]
 
 new g_CVAR[CVARS]
 

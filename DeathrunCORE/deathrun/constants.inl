@@ -42,7 +42,7 @@ enum _:PLAYER_DATA
 
 new bool:g_bFirstRound = true, bool:g_RoundStarted = true
 
-new g_iCurrTer, g_PlayerData[33][PLAYER_DATA]
+new g_iCurrTer, g_PlayerData[32][PLAYER_DATA]
 
 new Trie:TrieReconnected, Array:ArrayForwardRandomize, Array:ArrayForwards
 
