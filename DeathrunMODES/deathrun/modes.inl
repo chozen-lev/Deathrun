@@ -37,7 +37,7 @@ public Handle_MenuModes(id, menu, item)
         static i, ret, hc_state, fwdData[FORWARD_DATA], Data[ModeData], ModeIndexes:iNextMode, ModeEvents:event
         
         remove_task(id + TASK_AUTOCHOOSE)
-		
+        
         if (item == MENU_EXIT || item == MENU_TIMEOUT)
         {
             ArrayGetArray(ArrayModes, random(ArraySize(ArrayAvailModes) - 1), Data)

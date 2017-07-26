@@ -174,7 +174,13 @@ public CBasePlayer_RoundRespawn_Post(id)
 }
 
 public CSGameRules_RestartRound()
-{ 
+{
+    if (get_cvar_num("mp_freezetime"))
+    {
+        EnableHookChain(g_iFwdRoundFreezeEnd)
+        EnableHamForward(g_iFwdTriggerPushTouch)
+    }
+    
     if (g_CurrMode[m_Index] != ModeIndexes:m_None)
     {
         static Data[ModeData], i, ModeEvents:event, ret, hc_state, fwdData[FORWARD_DATA]
@@ -218,12 +224,6 @@ public CSGameRules_RestartRound()
             }
             
             g_CurrMode = Data
-			
-            if (get_cvar_num("mp_freezetime"))
-            {
-                EnableHookChain(g_iFwdRoundFreezeEnd)
-                EnableHamForward(g_iFwdTriggerPushTouch)
-            }
         }
         
         for (i = 0; i < ArraySize(ArrayForwardChangeMode); i++)
@@ -268,5 +268,5 @@ public CSGameRules_OnRoundFreezeEnd_Post()
 
 public FwdTriggerPushTouch(touched, toucher)
 {
-	return HAM_SUPERCEDE
+    return HAM_SUPERCEDE
 }
