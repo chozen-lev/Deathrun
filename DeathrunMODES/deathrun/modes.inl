@@ -38,9 +38,8 @@ public Handle_MenuModes(id, menu, item)
         
         remove_task(id + TASK_AUTOCHOOSE)
         
-        if (item == MENU_EXIT || item == MENU_TIMEOUT)
-        {
-            ArrayGetArray(ArrayModes, random(ArraySize(ArrayAvailModes) - 1), Data)
+        if (item == MENU_EXIT || item == MENU_TIMEOUT) {
+            ArrayGetArray(ArrayModes, ArrayFindValue(ArrayModeIndexes, ArrayGetCell(ArrayAvailModes, random(ArraySize(ArrayAvailModes)))), Data)
         }
         else
         {

@@ -30,8 +30,9 @@ public CBasePlayer_RoundRespawn_Post(id)
             {
                 ExecuteForward(callback, ret, id, g_iModeMenu, i)
                 
-                if (ret != ITEM_DISABLED)
+                if (ret != ITEM_DISABLED) {
                     ArrayPushCell(ArrayAvailModes, str_to_num(info))
+                }
             }
             else ArrayPushCell(ArrayAvailModes, str_to_num(info))
         }
