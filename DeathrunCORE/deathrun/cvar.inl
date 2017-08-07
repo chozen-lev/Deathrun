@@ -5,6 +5,8 @@ new CVAR_ReconnectRespawn
 new CVAR_NoFallDmg
 new CVAR_BuyMenu
 new CVAR_BlockRewards
+new CVAR_BlockDamageOnSpawn
+new CVAR_BlockBvelosityOnSpawn
 
 public plugin_cfg()
 {
@@ -13,6 +15,8 @@ public plugin_cfg()
     CVAR_NoFallDmg = create_cvar("mp_terrnfd", "1")
     CVAR_BuyMenu = create_cvar("mp_buymenu", "0")
     CVAR_BlockRewards = create_cvar("dr_rewards", "1")
+    CVAR_BlockDamageOnSpawn = create_cvar("dr_blockgamage", "1")
+    CVAR_BlockBvelosityOnSpawn = create_cvar("dr_blockbvelocity", "1")
     
     // Disable team balancing
     set_cvar_num("mp_limitteams", 0)

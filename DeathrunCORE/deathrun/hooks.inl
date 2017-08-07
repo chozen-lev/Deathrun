@@ -215,10 +215,30 @@ public CSGameRules_FPlayerCanRespawn(id)
     return HC_CONTINUE
 }
 
+public CBasePlayer_Spawn(id)
+{
+    if (is_user_connected(id))
+    {
+        rg_remove_all_items(id) 
+        rg_give_item(id, "weapon_knife")
+        
+        if (get_pcvar_bool(CVAR_BlockDamageOnSpawn)) {
+            set_member(id, m_bitsDamageType, DMG_GENERIC)
+        }
+        
+        if (get_pcvar_bool(CVAR_BlockBvelosityOnSpawn))
+        {
+            set_entvar(id, var_basevelocity, Float:{ 0.0, 0.0, 0.0 })
+            set_entvar(id, var_clbasevelocity, Float:{ 0.0, 0.0, 0.0 })
+        }
+    }
+}
+
 public CBasePlayer_Spawn_Post(id)
 {
-    if (is_user_connected(id) && !get_pcvar_bool(CVAR_ReconnectRespawn) && !TrieKeyExists(TrieReconnected, g_PlayerData[id][m_szSteamID]))
+    if (is_user_connected(id) && !get_pcvar_bool(CVAR_ReconnectRespawn) && !TrieKeyExists(TrieReconnected, g_PlayerData[id][m_szSteamID])) {
         TrieSetCell(TrieReconnected, g_PlayerData[id][m_szSteamID], true)
+    }
 }
 
 public RoundEnd(WinStatus:status, ScenarioEventEndRound:event, Float:tmDelay)
@@ -239,9 +259,9 @@ public RoundEnd_Post(WinStatus:status, ScenarioEventEndRound:event, Float:tmDela
 
 public CBasePlayer_AddAccount(const id, amount, RewardType:type, bool:bTrackChange)
 {
-	if (get_pcvar_bool(CVAR_BlockRewards) && type != RT_NONE) {
-		return HC_BREAK
-	}
-	
-	return HC_CONTINUE
+    if (get_pcvar_bool(CVAR_BlockRewards) && type != RT_NONE) {
+        return HC_BREAK
+    }
+    
+    return HC_CONTINUE
 }
