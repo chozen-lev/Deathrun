@@ -22,6 +22,32 @@ public CBasePlayer_RoundRespawn_Post(id)
         static i, access, info[4], name[32], callback, ret, hc_state, fwdData[FORWARD_DATA], AvailModesNum
         ArrayClear(ArrayAvailModes)
         
+        static iMenu, time
+        
+        time = get_cvar_num("mp_freezetime")
+        
+        if (time <= 0) {
+            time = 0
+        } else if (time > 60) {
+            time = 60
+        }
+        
+        for (i = 0; i < ArraySize(ArrayForwardShowMenu); i++)
+        {
+            ArrayGetArray(ArrayForwardShowMenu, i, fwdData)
+            
+            if (fwdData[m_Post] == 0 && fwdData[m_State])
+            {
+                ExecuteForward(fwdData[m_fwdIndex], ret, id, g_iModeMenu, time)
+                
+                if (ret == HC_BREAK)
+                    return
+                
+                if (ret > hc_state)
+                    hc_state = ret
+            }
+        }
+        
         for (i = 0; i < menu_items(g_iModeMenu); i++)
         {
             menu_item_getinfo(g_iModeMenu, i, access, info, charsmax(info), name, charsmax(name), callback)
@@ -42,32 +68,6 @@ public CBasePlayer_RoundRespawn_Post(id)
         
         if (AvailModesNum > 1)
         {
-            static iMenu, time
-            
-            time = get_cvar_num("mp_freezetime")
-            
-            if (time <= 0) {
-                time = 0
-            } else if (time > 60) {
-                time = 60
-            }
-            
-            for (i = 0; i < ArraySize(ArrayForwardShowMenu); i++)
-            {
-                ArrayGetArray(ArrayForwardShowMenu, i, fwdData)
-                
-                if (fwdData[m_Post] == 0 && fwdData[m_State])
-                {
-                    ExecuteForward(fwdData[m_fwdIndex], ret, id, g_iModeMenu, time)
-                    
-                    if (ret == HC_BREAK)
-                        return
-                    
-                    if (ret > hc_state)
-                        hc_state = ret
-                }
-            }
-            
             if (hc_state != HC_SUPERCEDE)
             {
                 if (g_bArgState[0])
@@ -108,13 +108,22 @@ public CBasePlayer_RoundRespawn_Post(id)
                 }
             }
         }
-        else if (AvailModesNum == 1)
+        else if (AvailModesNum <= 1)
         {
+            if (get_cvar_num("mp_freezetime"))
+            {
+                set_member_game(m_iRoundTimeSecs, 0)
+                set_member_game(m_fRoundStartTime, halflife_time())
+                set_member_game(m_fRoundStartTimeReal, halflife_time())
+            }
+            
             static Data[ModeData], ModeIndexes:iNextMode, ModeEvents:event
             
-            menu_item_getinfo(g_iModeMenu, ArrayGetCell(ArrayAvailModes, 0), access, info, charsmax(info), name, charsmax(name), callback)
-            
-            ArrayGetArray(ArrayModes, ArrayFindValue(ArrayModeIndexes, str_to_num(info)), Data)
+            if (AvailModesNum == 1) {
+                ArrayGetArray(ArrayModes, ArrayFindValue(ArrayModeIndexes, ArrayGetCell(ArrayAvailModes, 0)), Data)
+            } else {
+                Data = g_NoneMode
+            }
             
             for (i = 0; i < ArraySize(ArrayForwardChangeMode); i++)
             {
