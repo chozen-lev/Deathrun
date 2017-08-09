@@ -3,7 +3,7 @@
 
 #define VERSION "1.0.0-dev+"
 
-#define IsPlayer(%1) (1 <= %1 <= g_iMaxPlayers)
+#define IsPlayer(%1) (1 <= %1 <= MaxClients)
 
 // Messages prefix
 new const g_langPrefix[] = "DR_CORE_PREFIX"
@@ -44,8 +44,6 @@ new bool:g_bFirstRound = true, bool:g_RoundStarted = true
 
 new g_iCurrTer, g_PlayerData[32][PLAYER_DATA]
 
-new Trie:TrieReconnected, Array:ArrayForwardRandomize, Array:ArrayForwards
+new Trie:TrieReconnected, Array:ArrayForwardRandomize, Array:ArrayForwards, Array:ArrayButtons
 
 new g_iArg[2], bool:g_bArgState[2]
-
-new g_iMaxPlayers

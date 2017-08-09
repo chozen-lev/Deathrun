@@ -7,6 +7,7 @@ new CVAR_BuyMenu
 new CVAR_BlockRewards
 new CVAR_BlockDamageOnSpawn
 new CVAR_BlockBvelosityOnSpawn
+new CVAR_ButtonsReset
 
 public plugin_cfg()
 {
@@ -17,6 +18,7 @@ public plugin_cfg()
     CVAR_BlockRewards = create_cvar("dr_rewards", "1")
     CVAR_BlockDamageOnSpawn = create_cvar("dr_blockgamage", "1")
     CVAR_BlockBvelosityOnSpawn = create_cvar("dr_blockbvelocity", "1")
+    CVAR_ButtonsReset = create_cvar("dr_buttonsreset", "1")
     
     // Disable team balancing
     set_cvar_num("mp_limitteams", 0)

@@ -1,5 +1,7 @@
 #include <amxmodx>
+#include <engine>
 #include <reapi>
+#include <hamsandwich>
 
 #include "deathrun/constants.inl"
 #include "deathrun/cvar.inl"
@@ -41,6 +43,7 @@ public plugin_natives()
 {
     ArrayForwardRandomize = ArrayCreate(FORWARD_DATA)
     ArrayForwards = ArrayCreate(FORWARDS)
+    ArrayButtons = ArrayCreate()
     
     register_library("DeathrunCORE")
     register_native("SetDRMCoreArg", "native_set_arg")
@@ -49,4 +52,9 @@ public plugin_natives()
     register_native("DRMCoreDisableForward", "native_disable_forward")
     
     register_native("dr_set_ter", "native_set_ter")
+}
+
+public plugin_precache()
+{
+    RegisterHam(Ham_Spawn, "func_button", "FwdFuncButtonSpawn_Post", true)
 }

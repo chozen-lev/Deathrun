@@ -2,9 +2,7 @@
 ///////////////////////////////////////////
 
 public DR_Init()
-{
-    g_iMaxPlayers = get_maxplayers()
-    
+{    
     TrieReconnected = TrieCreate()
     
     if (!get_pcvar_bool(CVAR_BuyMenu))

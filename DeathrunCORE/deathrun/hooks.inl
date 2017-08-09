@@ -82,6 +82,18 @@ public CSGameRules_RestartRound()
     if (!g_bFirstRound)
     {
         if (!get_pcvar_bool(CVAR_ReconnectRespawn)) TrieClear(TrieReconnected)
+    
+        if (get_pcvar_bool(CVAR_ButtonsReset))
+        {
+            static iEnt
+            for (new i = 0; i < ArraySize(ArrayButtons); i++)
+            {
+                iEnt = ArrayGetCell(ArrayButtons, i)
+                if (is_entity(iEnt)) {
+                    call_think(iEnt)
+                }
+            }
+        }
         
         static iPlayers[32], iNum
         get_players(iPlayers, iNum, "eh", "TERRORIST")
@@ -264,4 +276,11 @@ public CBasePlayer_AddAccount(const id, amount, RewardType:type, bool:bTrackChan
     }
     
     return HC_CONTINUE
+}
+
+public FwdFuncButtonSpawn_Post(iEnt)
+{
+    if (ArrayFindValue(ArrayButtons, iEnt) == -1) {
+        ArrayPushCell(ArrayButtons, iEnt)
+    }
 }
