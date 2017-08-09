@@ -13,7 +13,8 @@ enum ItemIndexes:iItems
     m_Speed,
     m_Gravity,
     m_Scout,
-    m_Bhop
+    m_SilentSteps,
+    m_HeGrenade
 };
 
 enum ShopFunc

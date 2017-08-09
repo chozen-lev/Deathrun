@@ -302,8 +302,6 @@ public Handle_MenuShop(id, menu, item)
     if (hc_state != HC_SUPERCEDE)
     {
         rg_add_account(id, -Data[m_Cost])
-        
-        menu_destroy(menu)
     }
 
     for (i = 0; i < ArraySize(ArrayForwardBuyItem); i++)
@@ -318,6 +316,8 @@ public Handle_MenuShop(id, menu, item)
                 break
         }
     }
+    
+    menu_destroy(menu)
     
     return PLUGIN_CONTINUE
 }
