@@ -1,0 +1,18 @@
+[ru]
+DR_BTNDB_TITLE = Управление кнопками
+DR_BTNDB_ADD = Добавить
+DR_BTNDB_WAIT = Ожидание нажатия
+DR_BTNDB_REMOVE = Удалить
+DR_BTNDB_TYPE = Тип
+DR_BTNDB_NEXT = Перейти к следующей
+DR_BTNDB_PREVIOUS = Перейти к предыдущей
+DR_BTNDB_SAVE = Сохранить все изменения в файл
+DR_BTNDB_LOAD = Загрузить настройки с файла
+
+DR_BTNDB_NUMBER = Всего добавленно: \r%d
+DR_BTNDB_ACTIVE = Выбранная: \r%d
+
+DR_BTNDB_TYPE_T = Для террористов
+DR_BTNDB_TYPE_CT = Для контер-террористов
+DR_BTNDB_TYPE_ALL = Для всех
+DR_BTNDB_TYPE_UNDEFINED = \dНеопределен

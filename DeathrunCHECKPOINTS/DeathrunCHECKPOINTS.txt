@@ -1,0 +1,26 @@
+[ru]
+DR_POINTS_TITLE = Управление чекпоинтами
+DR_POINTS_CREATE = Создать новый
+DR_POINTS_REMOVE = Удалить
+DR_POINTS_EDIT = Изменить свойства
+DR_POINTS_NEXT = Перейти к следующему
+DR_POINTS_PREVIOUS = Перейти к предыдущему
+DR_POINTS_SAVE = Сохранить все изменения в файл
+DR_POINTS_LOAD = Загрузить области с файла
+
+DR_POINTS_PROPERTIES_TITLE = Изменение свойств чекпоинта
+DR_POINTS_PROPERTIES_VECTOR = Вектор: \y%s
+DR_POINTS_PROPERTIES_AXIS = Направление: \y%s
+DR_POINTS_PROPERTIES_SIGN = Как изменить: \y%L
+DR_POINTS_PROPERTIES_AMOUNT = На сколько изменить: \y%.1f
+DR_POINTS_PROPERTIES_APPLY = \yПрименить
+DR_POINTS_PROPERTIES_TYPE = Тип: \y%L
+
+DR_POINTS_NUMBER = Количество: \r%d
+DR_POINTS_ACTIVE = Выбранный: \r%d
+
+DR_POINTS_PROPERTIES_PLUS = Увеличить
+DR_POINTS_PROPERTIES_MINUS = Уменьшить
+
+DR_POINTS_PROPERTIES_START = Стартовый
+DR_POINTS_PROPERTIES_FINISH = Финишный
